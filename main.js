@@ -3,10 +3,6 @@ Vue.component('product', {
     premium: {
       type: Boolean,
       required: true
-    },
-    cart: {
-      type: Array,
-      required: true
     }
   },
   template: `
@@ -37,11 +33,6 @@ Vue.component('product', {
                   :disabled="!inStock"
                   :class="{ disabledButton: !inStock }">
                   Add to Cart</button>
-
-          <button @click="removeFromCart"
-                  v-show="isInCart()"
-                  :class="{ disabledButton: !isInCart }">
-                  Remove from Cart</button>
       </div>
     </div>
   `,
@@ -79,10 +70,6 @@ Vue.component('product', {
     },
     updateProduct(index) {
       this.selectedVariant = index
-    },
-    isInCart() {
-      var index = this.cart.indexOf(this.variants[this.selectedVariant].variantId);
-      return index >= 0
     }
   },
 
@@ -105,7 +92,6 @@ Vue.component('product', {
   }
 })
 
-
 var app = new Vue({
   el: '#app',
   data: {
@@ -115,10 +101,6 @@ var app = new Vue({
   methods: {
     updateCart(id) {
       this.cart.push(id)
-    },
-    remvoeCart(id) {
-      var index = this.cart.indexOf(id);
-      if (index !== -1) this.cart.splice(index, 1);
     }
   }
 })
