@@ -1,6 +1,6 @@
 body {
   font-family: tahoma;
-  color: #282828;
+  color:#282828;
   margin: 0px;
 }
 
@@ -12,6 +12,8 @@ body {
 
 .product {
   display: flex;
+  flex-flow: wrap;
+  padding: 1rem;
 }
 
 img {
@@ -22,12 +24,13 @@ img {
 }
 
 .product-image {
-  flex-basis: 700px;
+  width: 80%;
 }
 
+.product-image,
 .product-info {
   margin-top: 10px;
-  flex-basis: 500px;
+  width: 50%;
 }
 
 .color-box {
@@ -58,8 +61,9 @@ button {
 }
 
 .review-form {
-  width: 30%;
+  width: 400px;
   padding: 20px;
+  margin: 40px;
   border: 1px solid #d8d8d8;
 }
 
