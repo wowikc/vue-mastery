@@ -18,11 +18,8 @@ Vue.component('product', {
         <a :href="link" target="_blank">More products like this</a>
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
-        <p>Shipping: {{ shipping }}</p>
 
-        <ul>
-          <li v-for="detail in details">{{ detail }}</li>
-        </ul>
+        <info-tabs :shipping="shipping" :details="details"></info-tabs>
 
         <div v-for="(variant, index) in variants"
              :key="variant.variantId"
@@ -38,7 +35,7 @@ Vue.component('product', {
                 </button>
       </div>
 
-      <product-tabs :reviews="reviews"></product-tabs>
+      <product-tabs :reviews="reviews" :details="details"></product-tabs>
 
     </div>
   `,
@@ -201,6 +198,37 @@ Vue.component('product-tabs', {
     return {
       tabs: ['Reviews', 'Make a Review'],
       selectedTab: 'Reviews'
+    }
+  }
+})
+
+Vue.component('info-tabs', {
+  props: ["shipping", "details"],
+  template: `
+    <div>
+      <span class="tab"
+            :class="{ activeTab: selectedTab === tab }"
+            v-for="(tab, index) in tabs"
+            :key="index"
+            @click="selectedTab = tab">
+            {{ tab }}
+      </span>
+
+      <div v-show="selectedTab === 'Shipping'">
+        <p>Shipping Cost: {{ shipping }}</p>
+      </div>
+
+      <div v-show="selectedTab === 'Details'">
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+      </div>
+    </div>
+  `,
+  data() {
+    return {
+      tabs: ['Details', 'Shipping'],
+      selectedTab: 'Details'
     }
   }
 })
