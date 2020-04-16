@@ -12,43 +12,43 @@ Vue.component('product', {
       </div>
 
       <div class="product-info">
-          <h1>{{ title }}</h1>
-          <a :href="link" target="_blank">More products like this</a>
-          <p v-if="inStock">In Stock</p>
-          <p v-else>Out of Stock</p>
-          <p>Shipping: {{ shipping }}</p>
+        <h1>{{ title }}</h1>
+        <a :href="link" target="_blank">More products like this</a>
+        <p v-if="inStock">In Stock</p>
+        <p v-else>Out of Stock</p>
+        <p>Shipping: {{ shipping }}</p>
 
-          <ul>
-              <li v-for="detail in details">{{ detail }}</li>
-          </ul>
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
 
-          <div v-for="(variant, index) in variants"
-              :key="variant.variantId"
-              class="color-box"
-              :style="{ backgroundColor: variant.variantColour }"
-              @click="updateProduct(index)">
-          </div>
+        <div v-for="(variant, index) in variants"
+             :key="variant.variantId"
+             class="color-box"
+             :style="{ backgroundColor: variant.variantColour }"
+             @click="updateProduct(index)">
+        </div>
 
-          <button @click="addToCart"
-                  :disabled="!inStock"
-                  :class="{ disabledButton: !inStock }">
-                  Add to Cart
-                   </button>
-
-          <div>
-            <h2>Reviews</h2>
-            <p v-if="!reviews.length">There are no reviews yet.</p>
-            <ul>
-              <li v-for="review in reviews">
-              <p>{{ review.name }}</p>
-              <p>Rating: {{ review.rating }}</p>
-              <p>{{ review.review }}</p>
-              </li>
-            </ul>
-          </div>
-
-          <product-review @review-submitted="addReview"></product-review>
+        <button @click="addToCart"
+                :disabled="!inStock"
+                :class="{ disabledButton: !inStock }">
+                Add to Cart
+                </button>
       </div>
+
+      <div>
+        <h2>Reviews</h2>
+        <p v-if="!reviews.length">There are no reviews yet.</p>
+        <ul>
+          <li v-for="review in reviews">
+          <p>{{ review.name }}</p>
+          <p>Rating: {{ review.rating }}</p>
+          <p>{{ review.review }}</p>
+          </li>
+        </ul>
+      </div>
+
+      <product-review @review-submitted="addReview"></product-review>
 
     </div>
   `,
